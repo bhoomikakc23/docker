@@ -9,7 +9,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/bhoomikakc23/docker.git'
+                git 'https://github.com/bhoomikakc23/https://github.com/bhoomikakc23/docker.git'
             }
         }
 
@@ -30,7 +30,7 @@ pipeline {
                         passwordVariable: 'DOCKER_PASS'
                     )
                 ]) {
-                    bat 'echo %DOCKER_PASS% | docker login -u %DOCKER_USERNAME% --password-stdin'
+                    bat 'echo $DOCKER_PASS% | docker login -u $DOCKER_USERNAME% --password-stdin'
                 }
             }
         }
