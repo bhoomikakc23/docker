@@ -12,7 +12,7 @@ pipeline {
                 git 'https://github.com/bhoomikakc23/https://github.com/bhoomikakc23/docker.git'
             }
         }
-
+    }
         stage('Build Docker Image') {
             steps {
                 script {
@@ -30,7 +30,7 @@ pipeline {
                         passwordVariable: 'DOCKER_PASS'
                     )
                 ]) {
-                    bat 'echo $DOCKER_PASS% | docker login -u $DOCKER_USERNAME% --password-stdin'
+                    bat 'echo $DOCKER_PASS | docker login -u bhoomikakc23 --password-stdin'
                 }
             }
         }
@@ -38,6 +38,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
+                    docker.withRegistry('','dockerhub-creds'){
                     docker.image("${DOCKER_IMAGE}:latest").push()
                 }
             }
